@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
+import nltk
 from nltk.corpus import stopwords
 
 from sklearn import preprocessing
@@ -21,6 +22,7 @@ def read_data(data_dir: str) -> (pd.DataFrame, pd.DataFrame):
         os.path.join(data_dir, 'atis_intents_test.csv'), header=None, names=['intent', 'sentence'])
     return df_train, df_test
 
+nltk.download('stopwords')
 
 df_train, df_test = read_data('../input/atis-airlinetravelinformationsystem/')
 
@@ -43,7 +45,7 @@ print(X_train.shape, y_train.shape, X_valid.shape, y_valid.shape, X_test.shape, 
 
 embed_dim = 300
 max_vocab_size = len(word_index) + 1
-embed_matrix = read_glove_matrix('../input/glove42b300dtxt/glove.42B.300d.txt', max_vocab_size, embed_dim)
+embed_matrix = read_glove_matrix('../input/glove42b300dtxt/glove.42B.300d.txt', max_vocab_size, embed_dim, word_index)
 
 model = build_model(input_length, max_vocab_size, embed_dim, embed_matrix)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])

@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def read_glove_matrix(glove_txt_file: str, max_vocab_size, embedded_dim):
+def read_glove_matrix(glove_txt_file: str, max_vocab_size, embedded_dim, word_index):
     embedded_index = dict()  
     with open(glove_txt_file, 'r', encoding='utf-8') as glove:
         for line in glove:

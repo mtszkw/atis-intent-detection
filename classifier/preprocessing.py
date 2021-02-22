@@ -4,7 +4,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
-def remove_stopwords_from_sentence(sentence, stopwords):
+def remove_stopwords_from_sentence(sentence, stop_words):
     return ' '.join([word for word in sentence.split() if word not in (stop_words)])    
 
 
